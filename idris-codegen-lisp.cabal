@@ -1,9 +1,9 @@
-Name:           idris-emptycg
+Name:           idris-codegen-lisp
 Version:        0.0.0.1
 License:        BSD3
 License-file:   CRAPL-LICENSE.txt
-Author:         Edwin Brady
-Maintainer:	Edwin Brady <ecb10@st-andrews.ac.uk>
+Author:         Nicolas Alexander Schmidt
+Maintainer:	Nicolas Alexander Schmidt <zero@fromzerotoinfinity.xyz>
 Build-Type:	Simple
 Cabal-Version:  >= 1.8
 Extra-source-files:
@@ -22,7 +22,7 @@ Executable idris-emptycg
                 , mtl
                 , transformers
 
-  other-modules: IRTS.CodegenEmpty
+  other-modules: IRTS.CodegenLisp
 
   if os(linux)
      cpp-options:   -DLINUX
@@ -42,5 +42,3 @@ Executable idris-emptycg
 
   ghc-prof-options: -auto-all -caf-all
   ghc-options:      -threaded -rtsopts -funbox-strict-fields
-
-
