@@ -2,8 +2,10 @@ module Main where
 
 import Idris.Core.TT
 import Idris.AbsSyntax
+import Idris.Options
 import Idris.ElabDecls
 import Idris.REPL
+import Idris.Main
 
 import IRTS.Compiler
 import IRTS.CodegenLisp
@@ -21,7 +23,7 @@ showUsage = do putStrLn "Usage: idris-lisp <ibc-files> [-o <output-file>]"
 
 getOpts :: IO Opts
 getOpts = do xs <- getArgs
-             return $ process (Opts [] "a.out") xs
+             return $ process (Opts [] "a.lisp") xs
   where
     process opts ("-o":o:xs) = process (opts { output = o }) xs
     process opts (x:xs) = process (opts { inputs = x:inputs opts }) xs
