@@ -11,12 +11,12 @@ import IRTS.CodegenLisp
 import System.Environment
 import System.Exit
 
-import Paths_idris_emptycg
+import Paths_idris_lisp
 
 data Opts = Opts { inputs :: [FilePath],
                    output :: FilePath }
 
-showUsage = do putStrLn "Usage: idris-emptycg <ibc-files> [-o <output-file>]"
+showUsage = do putStrLn "Usage: idris-lisp <ibc-files> [-o <output-file>]"
                exitWith ExitSuccess
 
 getOpts :: IO Opts
@@ -31,7 +31,7 @@ cg_main :: Opts -> Idris ()
 cg_main opts = do elabPrims
                   loadInputs (inputs opts) Nothing
                   mainProg <- elabMain
-                  ir <- compile (Via "emptycg") (output opts) mainProg
+                  ir <- compile (Via IBCFormat "lisp") (output opts) (Just mainProg)
                   runIO $ codegenLisp ir
 
 main :: IO ()
