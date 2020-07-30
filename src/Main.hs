@@ -6,7 +6,7 @@ import Idris.ElabDecls
 import Idris.REPL
 
 import IRTS.Compiler
-import IRTS.CodegenEmpty
+import IRTS.CodegenLisp
 
 import System.Environment
 import System.Exit
@@ -32,12 +32,10 @@ cg_main opts = do elabPrims
                   loadInputs (inputs opts) Nothing
                   mainProg <- elabMain
                   ir <- compile (Via "emptycg") (output opts) mainProg
-                  runIO $ codegenEmpty ir
+                  runIO $ codegenLisp ir
 
 main :: IO ()
 main = do opts <- getOpts
           if (null (inputs opts)) 
              then showUsage
              else runMain (cg_main opts)
-
-
